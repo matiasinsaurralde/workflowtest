@@ -1,0 +1,117 @@
+run:
+  allow-parallel-runners: true
+
+issues:
+  exclude-dirs:
+    - vendor
+    - .git
+    - .idea
+    - dist
+    - .github
+    - resources
+    - bin
+    - internal/data
+  exclude-rules:
+    - path: 'pkg/connection/connection.go'
+      linters:
+        - dupl
+    - path: (.+)_test.go
+      linters:
+        - gosec
+        - dupl
+
+linters:
+  disable:
+    - dupl
+    - err113
+    - err113
+    - mnd
+    - wrapcheck
+    - funlen
+    - gochecknoglobals
+    - lll
+    - wsl
+    - thelper
+    - testpackage
+    - typecheck
+    - nlreturn
+    - nolintlint
+    - nilnil
+    - varnamelen
+    - forcetypeassert
+    - exhaustruct
+    - gocognit
+    - tagliatelle
+    - forbidigo
+    - musttag
+    - interfacebloat
+    - cyclop
+    - tparallel
+    - depguard
+    - tagalign
+    - gocyclo
+    - exportloopref
+    - godox
+    - nonamedreturns
+  presets:
+    - bugs
+    - comment
+    - complexity
+    - error
+    - import
+    - metalinter
+    - module
+    - performance
+    - sql
+    - style
+    - test
+    - unused
+linters-settings:
+  revive:
+    rules:
+      - name: unexported-return
+        disabled: true
+  maintidx:
+    under: 3
+
+  ireturn:
+    allow:
+      - anon
+      - error
+      - empty
+      - stdlib
+      - (or|er)$
+      - bigquery.DB
+      - snowflake.SfClient
+      - postgres.PgClient
+      - mssql.MsClient
+      - databricks.Client
+      - athena.Client
+      - duckdb.DuckDBClient
+      - clickhouse.ClickHouseClient
+      - tea.Model
+      - driver.Rows
+      - driver.Row
+      - driver.Batch
+  goconst:
+    min-len: 5
+    min-occurrences: 5
+  nestif:
+    min-complexity: 10
+  testifylint:
+    enable:
+      - "bool-compare"
+      - "compares"
+      - "empty"
+      - "error-is-as"
+      - "error-nil"
+      - "expected-actual"
+      - "float-compare"
+      - "len"
+      - "suite-dont-use-pkg"
+      - "suite-extra-assert-call"
+      - "suite-thelper"
+
+  gosec:
+    excludes:
+      - G601
